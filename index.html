@@ -1293,10 +1293,14 @@
     </footer>
 
     <script>
+        // ===== CONFIG CLOUDINARY =====
+        const CLOUD_NAME = 'dan8sipgs'; // tu cloud name
+        const UPLOAD_PRESET = 'rosayclavel2025ventanilla'; // tu preset (unsigned)
+
         // ÚNICO CAMBIO: ACTUALIZAR LA URL DEL GOOGLE APPS SCRIPT
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRUsdoFXkWte_kYPK8wGqScEQwY3OAuwVu0eQlLJKrB0RiWBRyv2DZYOFlVzcrJUibfg/exec';
 
-        // El resto de tu JavaScript permanece EXACTAMENTE igual
+        // El resto de tu JavaScript permanece con adiciones para Cloudinary
         // Efecto de navegación al hacer scroll
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
@@ -1455,7 +1459,7 @@
             let lines = [];
             
             do {
-                ctx.font = `italic ${fontSize}px "Cormorant Garamond"`;
+                ctx.font = `italic ${fontSize}px "Cormorant Garamond"`; 
                 lines = getLines(ctx, quote, canvas.width - 160);
                 fontSize -= 2;
             } while (lines.length > 10 && fontSize > 36);
@@ -1557,9 +1561,43 @@
             return lines;
         }
 
-        // ===== FORMULARIO CON GOOGLE APPS SCRIPT =====
-        
-        // Manejo del formulario con Google Apps Script
+        // ===== CLOUDINARY UPLOAD + FORM HANDLER =====
+
+        // Subir archivos a Cloudinary usando preset unsigned
+        async function uploadFilesToCloudinary(files) {
+          const uploadUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
+          const uploaded = [];
+
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(uploadUrl, {
+              method: 'POST',
+              body: fd
+            });
+
+            if (!res.ok) {
+              const txt = await res.text();
+              throw new Error(`Error subiendo a Cloudinary: ${res.status} ${txt}`);
+            }
+
+            const data = await res.json();
+            uploaded.push({
+              url: data.secure_url,
+              public_id: data.public_id,
+              original_filename: data.original_filename,
+              format: data.format,
+              bytes: data.bytes
+            });
+          }
+
+          return uploaded;
+        }
+
+        // Manejo del formulario con subida a Cloudinary y luego envío a Google Apps Script
         document.getElementById('photoUploadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1601,17 +1639,19 @@
             formMessage.style.display = 'none';
             
             try {
-                // Preparar datos del formulario
+                // 1) subir fotos a Cloudinary y obtener URLs
+                const uploaded = await uploadFilesToCloudinary(photos);
+                // 2) preparar datos del formulario con las URLs
                 const formData = {
                     name: name,
                     email: email,
                     category: document.getElementById('category').value,
                     message: document.getElementById('message').value.trim(),
                     timestamp: new Date().toISOString(),
-                    filenames: Array.from(photos).map(file => file.name)
+                    images: uploaded // incluye url y metadatos de cada imagen
                 };
                 
-                // Enviar datos al Google Apps Script
+                // 3) enviar datos al Google Apps Script
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
                     headers: {
@@ -1626,12 +1666,13 @@
                     showFormMessage('¡Gracias por compartir tus fotos! Hemos recibido tu envío correctamente.', 'success');
                     this.reset();
                 } else {
+                    console.error('Apps Script error response:', result);
                     showFormMessage('Hubo un error al enviar las fotos. Por favor, inténtalo de nuevo.', 'error');
                 }
                 
             } catch (error) {
                 console.error('Error:', error);
-                showFormMessage('Error de conexión. Por favor, verifica tu internet e inténtalo de nuevo.', 'error');
+                showFormMessage('Error al subir imágenes. Verifica tu internet e inténtalo de nuevo.', 'error');
             } finally {
                 // Restaurar botón
                 submitBtn.innerHTML = originalBtnText;
