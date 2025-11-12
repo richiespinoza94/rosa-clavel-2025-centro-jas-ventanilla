@@ -1,4 +1,4 @@
-// upload-cloudinary.js - VERSIÓN FINAL FUNCIONAL
+// upload-cloudinary.js - VERSIÓN 100% FUNCIONAL
 // Minimal, self-contained Cloudinary uploader + send URLs to Google Apps Script.
 
 (function () {
@@ -16,11 +16,14 @@
       fd.append('file', file);
       fd.append('upload_preset', UPLOAD_PRESET);
 
+      console.log(`📤 Subiendo archivo ${i + 1}/${files.length} a Cloudinary...`);
       const res = await fetch(uploadUrl, { method: 'POST', body: fd });
+      
       if (!res.ok) {
         const txt = await res.text();
         throw new Error(`Cloudinary upload failed: ${res.status} ${txt}`);
       }
+      
       const data = await res.json();
       uploaded.push({
         url: data.secure_url || data.url,
@@ -29,6 +32,7 @@
         format: data.format,
         bytes: data.bytes
       });
+      console.log(`✅ Archivo ${i + 1} subido:`, data.secure_url);
     }
 
     return uploaded;
@@ -52,6 +56,8 @@
       const name = form.querySelector('#name').value.trim();
       const email = form.querySelector('#email').value.trim();
       const photos = form.querySelector('#photos').files;
+      
+      // Validaciones
       if (!name || !email) {
         show('Por favor, completa todos los campos obligatorios.', 'error');
         return;
@@ -71,16 +77,20 @@
         }
       }
 
+      // Preparar UI para carga
       if (submitBtn) {
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo...';
         submitBtn.disabled = true;
       }
       if (formMessage) formMessage.style.display = 'none';
 
-      // 1) subir a Cloudinary
-      const uploaded = await uploadFilesToCloudinary(photos);
+      console.log('🚀 Iniciando proceso de subida...');
 
-      // 2) enviar metadata + URLs al Apps Script
+      // 1) Subir a Cloudinary
+      const uploaded = await uploadFilesToCloudinary(photos);
+      console.log('✅ Todas las imágenes subidas a Cloudinary:', uploaded);
+
+      // 2) Enviar metadata a Google Apps Script
       const payload = {
         name: name,
         email: email,
@@ -98,46 +108,49 @@
         body: JSON.stringify(payload)
       });
 
-      console.log('📨 Status de respuesta:', resp.status);
+      console.log('📨 Status de respuesta:', resp.status, resp.statusText);
 
-      // **CORRECCIÓN CRÍTICA: Leer como texto primero**
+      // **SOLUCIÓN CRÍTICA: Leer como texto PRIMERO**
       const responseText = await resp.text();
-      console.log('📄 Respuesta cruda:', responseText);
+      console.log('📄 Respuesta cruda del servidor:', responseText);
 
       let result;
       try {
         result = JSON.parse(responseText);
-        console.log('✅ JSON parseado:', result);
+        console.log('✅ JSON parseado correctamente:', result);
       } catch (parseError) {
         console.error('❌ Error parseando JSON:', parseError);
+        console.error('Texto que falló:', responseText);
         throw new Error('La respuesta del servidor no es JSON válido');
       }
 
-      // **CORRECCIÓN CRÍTICA: Verificar explícitamente success === true**
+      // **SOLUCIÓN CRÍTICA: Verificación EXPLÍCITA**
       if (result && result.success === true) {
         const successMessage = result.message || '¡Gracias! Tus fotos fueron subidas correctamente.';
-        console.log('🎉 Éxito:', successMessage);
+        console.log('🎉 ÉXITO COMPLETO:', successMessage);
         show(successMessage, 'success');
         form.reset();
       } else {
-        console.error('❌ Error en respuesta:', result);
+        console.error('❌ El servidor reportó error:', result);
         const errorMessage = result.message || result.error || 'Hubo un error registrando el envío. Intenta de nuevo.';
         show(errorMessage, 'error');
       }
 
     } catch (err) {
-      console.error('💥 Error general:', err);
+      console.error('💥 Error en el proceso:', err);
       
+      // Mensajes de error específicos
       if (err.message.includes('Cloudinary upload failed')) {
-        show('Error al subir las imágenes. Verifica que los archivos sean imágenes válidas.', 'error');
+        show('Error al subir las imágenes a Cloudinary. Verifica que los archivos sean imágenes válidas.', 'error');
       } else if (err.message.includes('Failed to fetch')) {
         show('Error de conexión. Verifica tu internet e inténtalo de nuevo.', 'error');
       } else if (err.message.includes('La respuesta del servidor no es JSON válido')) {
-        show('Error inesperado del servidor. Por favor, contacta al organizador.', 'error');
+        show('Error inesperado del servidor. Las fotos se subieron pero no se pudo confirmar. Contacta al organizador.', 'error');
       } else {
         show('Error: ' + err.message, 'error');
       }
     } finally {
+      // Restaurar botón
       if (submitBtn) {
         submitBtn.innerHTML = originalBtn;
         submitBtn.disabled = false;
@@ -145,13 +158,15 @@
     }
   }
 
-  // Bind safely after DOM ready; avoid double-binding
+  // Vincular formulario cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('photoUploadForm');
     if (form && !form.__cloudinary_bound__) {
       form.addEventListener('submit', handleFormSubmit);
       form.__cloudinary_bound__ = true;
-      console.log('✅ Formulario vinculado correctamente');
+      console.log('✅ Formulario vinculado exitosamente');
+    } else {
+      console.log('ℹ️ Formulario no encontrado o ya vinculado');
     }
   });
 })();
