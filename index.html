@@ -1560,7 +1560,7 @@
         // Configuración de Cloudinary
         const CLOUD_NAME = 'dan8sipgs';
         const UPLOAD_PRESET = 'rosayclavel2025ventanilla';
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRUsdoFXkWte_kYPK8wGqScEQwY3OAuwVu0eQlLJKrB0RiWBRyv2DZYOFlVzcrJUibfg/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8ru3msRBG8XSR9fPMVFaasNQIYFGyaYgks1K1-jR2wvx1LwiriUojssoisDRZNZEVgw/exec';
 
         async function uploadFilesToCloudinary(files) {
             const uploadUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
@@ -1632,14 +1632,18 @@
                     }
                 }
 
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo fotos...';
                 submitBtn.disabled = true;
                 formMessage.style.display = 'none';
 
                 // 1) Subir a Cloudinary
+                console.log('Iniciando subida a Cloudinary...');
                 const uploadedImages = await uploadFilesToCloudinary(photos);
+                console.log('Imágenes subidas a Cloudinary:', uploadedImages);
 
                 // 2) Enviar metadatos a Google Apps Script
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando información...';
+                
                 const payload = {
                     name: name,
                     email: email,
@@ -1649,31 +1653,54 @@
                     images: uploadedImages
                 };
 
+                console.log('Enviando datos a Google Apps Script:', payload);
+
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(payload)
                 });
 
-                const result = await response.json();
+                console.log('Status de respuesta:', response.status);
+                
+                // Leer la respuesta como texto primero
+                const responseText = await response.text();
+                console.log('Respuesta del servidor (texto):', responseText);
+                
+                let result;
+                try {
+                    result = JSON.parse(responseText);
+                } catch (e) {
+                    console.error('Error parseando JSON:', e);
+                    throw new Error('Respuesta inválida del servidor');
+                }
+                
+                console.log('Respuesta parseada:', result);
 
                 if (result && result.success) {
-                    showMessage('¡Gracias! Tus fotos fueron subidas correctamente.', 'success');
+                    showMessage(`¡Gracias! Tus ${result.imageCount || images.length} foto(s) fueron subidas correctamente. Las imágenes están en Cloudinary y Google Drive.`, 'success');
                     document.getElementById('photoUploadForm').reset();
                 } else {
-                    console.error('Apps Script response:', result);
-                    showMessage('Hubo un error registrando el envío. Intenta de nuevo.', 'error');
+                    throw new Error(result.error || 'Error desconocido del servidor');
                 }
 
             } catch (error) {
-                console.error('Error:', error);
-                showMessage('Error al subir imágenes. Verifica tu conexión e inténtalo de nuevo.', 'error');
+                console.error('Error completo:', error);
+                console.error('Tipo de error:', error.name);
+                console.error('Mensaje de error:', error.message);
+                
+                if (error.message.includes('Cloudinary')) {
+                    showMessage('Error al subir las fotos a Cloudinary. Por favor, intenta de nuevo.', 'error');
+                } else {
+                    showMessage('Las fotos se subieron correctamente, pero hubo un problema al guardar la información. Por favor, contacta al organizador.', 'error');
+                }
             } finally {
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
             }
         });
-
         // Validación en tiempo real (opcional, para mejor UX)
         document.getElementById('photos').addEventListener('change', function() {
             const files = this.files;
