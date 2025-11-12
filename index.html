@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiesta de Gala Rosa y Clavel</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* TODOS TUS ESTILOS ORIGINALES PERMANECEN EXACTAMENTE IGUAL */
+        :root {
+            --primary: #8B4513;
+            --secondary: #C19A6B;
+            --accent: #D4AF37;
+            --light: #F5F5F5;
+            --dark: #2F2F2F;
+            --text: #4A4A4A;
+            --success: #2E8B57;
+            --rose: #D8A48F;
+            --carnation: #E8B4B8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+            margin: 20px auto 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.97);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        
+        nav.scrolled {
+            padding: 15px 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(47, 47, 47, 0.7), rgba(47, 47, 47, 0.7)), 
+                        url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            color: white;
+            line-height: 1.1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+        
+        .hero-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 50px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        .floral-divider {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+        }
+        
+        .age-range {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--rose), var(--carnation));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            margin-top: 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            letter-spacing: 0.5px;
+        }
+        
+        .welcome {
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f0f0f0' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .welcome-content {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .welcome h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+        
+        .welcome p {
+            margin-bottom: 25px;
+            font-size: 1.15rem;
+            color: var(--text);
+        }
+        
+        .confirmation-notice {
+            background-color: rgba(193, 154, 107, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 0 5px 5px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .confirmation-notice:before {
+            content: "⚠️";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .confirmation-notice h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            padding-left: 30px;
+        }
+        
+        .confirmation-notice p {
+            padding-left: 30px;
+            margin-bottom: 0;
+        }
+        
+        .welcome-features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            gap: 30px;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .dress-code {
+            background-color: var(--light);
+        }
+        
+        .dress-code h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+        }
+        
+        .dress-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .dress-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            text-align: center;
+            padding: 50px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background-color: white;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dress-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+        
+        .dress-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .dress-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        
+        .dress-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+        }
+        
+        .dress-card ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .dress-card li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text);
+        }
+        
+        .dress-card li:before {
+            content: '✓';
+            color: var(--success);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .location {
+            background-color: white;
+        }
+        
+        .location-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .location-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .location-info h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+        
+        .location-details {
+            margin-bottom: 40px;
+        }
+        
+        .location-details p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .location-details i {
+            margin-right: 15px;
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Notificación para el DNI en la sección de ubicación */
+        .dni-notice {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 69, 19, 0.1));
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .dni-notice:before {
+            content: "📋";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .dni-notice h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            padding-left: 40px;
+        }
+        
+        .dni-notice p {
+            padding-left: 40px;
+            margin-bottom: 0;
+            font-size: 1.05rem;
+        }
+        
+        .location-map {
+            flex: 1;
+            min-width: 300px;
+            height: 450px;
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Sección de Inspiración */
+        .inspiration-section {
+            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .inspiration-section:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23C19A6B' fill-opacity='0.1' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .quote-card {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(193, 154, 107, 0.2);
+        }
+        
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        
+        .quote-card blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            color: var(--primary);
+            line-height: 1.4;
+            margin-bottom: 25px;
+        }
+        
+        .quote-card cite {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-style: normal;
+            display: block;
+            margin-bottom: 40px;
+        }
+        
+        .share-ig-btn {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+            border: none;
+        }
+        
+        .share-ig-btn:hover {
+            background: linear-gradient(45deg, #FD1D1D, #E1306C, #C13584, #833AB4, #5851DB, #405DE6);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .share-whatsapp-btn {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            margin-left: 15px;
+        }
+        
+        .share-whatsapp-btn:hover {
+            background: linear-gradient(45deg, #128C7E, #25D366);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* Modal para compartir */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .share-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .share-modal h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+        
+        .photo-album {
+            background-color: var(--light);
+        }
+        
+        .photo-album h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+        }
+        
+        .album-instructions {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+        
+        .album-instructions p {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .upload-form {
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(193, 154, 107, 0.2);
+        }
+        
+        .form-submit {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* Mensajes del formulario */
+        .form-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .form-message.success {
+            background-color: rgba(46, 139, 87, 0.1);
+            color: #2E8B57;
+            border: 1px solid #2E8B57;
+        }
+        
+        .form-message.error {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #DC3545;
+            border: 1px solid #DC3545;
+        }
+        
+        footer {
+            background: linear-gradient(to right, var(--dark), #1a1a1a);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .organizers {
+            margin-top: 20px;
+        }
+        
+        .organizers p {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floral-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .floral-1 {
+            top: 10%;
+            left: 5%;
+            background: radial-gradient(circle, var(--rose) 0%, transparent 70%);
+        }
+        
+        .floral-2 {
+            bottom: 10%;
+            right: 5%;
+            background: radial-gradient(circle, var(--carnation) 0%, transparent 70%);
+        }
+        
+        .share-moment {
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        /* Media Queries para Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                border-radius: 0 0 10px 10px;
+                max-height: 400px;
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px 10px;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            .dress-container, .location-content, .footer-content {
+                flex-direction: column;
+            }
+            
+            .upload-form {
+                padding: 30px 20px;
+            }
+            
+            .feature {
+                min-width: 100%;
+            }
+            
+            .welcome h2, .dress-code h2, .location-info h2, .photo-album h2 {
+                font-size: 2.2rem;
+            }
+            
+            .quote-card {
+                padding: 40px 25px;
+            }
+            
+            .quote-card blockquote {
+                font-size: 1.8rem;
+            }
+            
+            .quote-card cite {
+                font-size: 1rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .share-whatsapp-btn {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-date {
+                font-size: 1.4rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 10px 5px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+            
+            .quote-card blockquote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Todo tu HTML original permanece exactamente igual -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>Rosa & Clavel</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#welcome">Bienvenida</a></li>
+                <li><a href="#dress-code">Vestimenta</a></li>
+                <li><a href="#location">Ubicación</a></li>
+                <li><a href="#inspiration">Inspiración</a></li>
+                <li><a href="#photo-album">Álbum</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content fade-in">
+            <div class="floral-divider">✦ ✦ ✦</div>
+            <h1>Fiesta de Gala<br>Rosa & Clavel</h1>
+            <p class="hero-date">Viernes, 21 de Noviembre de 2025 - 8:00 p.m.</p>
+            <p>Una velada especial donde se celebran los valores de la juventud, la fe y la elegancia</p>
+            
+            <!-- Contador regresivo -->
+            <div class="countdown fade-in">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+            
+            <div class="floral-divider">✦ ✦ ✦</div>
+            <p class="share-moment">Comparte este momento especial</p>
+        </div>
+    </section>
+
+    <!-- Sección de Bienvenida -->
+    <section id="welcome" class="welcome">
+        <div class="floral-accent floral-1"></div>
+        <div class="floral-accent floral-2"></div>
+        <div class="container">
+            <div class="welcome-content fade-in">
+                <h2 class="section-title">Bienvenidos a Nuestra Gala Anual</h2>
+                <p>Te damos la bienvenida a una velada especial donde se celebran los valores de la juventud, la fe y la elegancia.</p>
+                <p>Esta será una noche llena de música, baile y compañía edificante. Un momento para fortalecer lazos y crear recuerdos inolvidables.</p>
+                
+                <div class="confirmation-notice fade-in">
+                    <h4>Confirmación de Asistencia</h4>
+                    <p>La asistencia es personal y requiere conformidad de tu obispo o presidente de rama. Si ya completaste el formulario, tu líder eclesiástico dará la conformidad final.</p>
+                </div>
+                
+                <div class="age-range fade-in">Jóvenes de 18 a 35 años</div>
+                
+                <div class="welcome-features">
+                    <div class="feature fade-in">
+                        <i class="fas fa-glass-cheers"></i>
+                        <h3>Recepción Elegante</h3>
+                        <p>Ambiente especial con música y decoración para iniciar la noche</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Entremeses</h3>
+                        <p>Deliciosos entremeses a cargo de cada estaca participante</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <i class="fas fa-music"></i>
+                        <h3>Baile y Música</h3>
+                        <p>Espacio para bailar con música seleccionada para la ocasión</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Dress Code -->
+    <section id="dress-code" class="dress-code">
+        <div class="container">
+            <h2 class="section-title fade-in">Código de Vestimenta</h2>
+            <div class="dress-container">
+                <div class="dress-card fade-in">
+                    <div class="dress-icon">👔</div>
+                    <h3>Para Caballeros</h3>
+                    <ul>
+                        <li>Traje formal oscuro (azul marino, negro o gris oscuro)</li>
+                        <li>Corbata o corbatín elegante</li>
+                        <li>Zapatos de vestir de cuero</li>
+                        <li>Se sugiere incorporar el color marrón o beige en algún detalle</li>
+                        <li>Vestimenta modesta y apropiada</li>
+                    </ul>
+                </div>
+                <div class="dress-card fade-in">
+                    <div class="dress-icon">👗</div>
+                    <h3>Para Damas</h3>
+                    <ul>
+                        <li>Vestido largo o de cóctel elegante</li>
+                        <li>Preferiblemente en tonos tierra, marfil o verde oscuro</li>
+                        <li>Zapatos formales cerrados o sandalias elegantes</li>
+                        <li>Accesorios discretos y joyería clásica</li>
+                        <li>Vestimenta modesta que refleje nuestros valores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Ubicación -->
+    <section id="location" class="location">
+        <div class="container">
+            <div class="location-content">
+                <div class="location-info fade-in">
+                    <h2 class="section-title">Ubicación y Fecha</h2>
+                    <div class="location-details">
+                        <p><i class="fas fa-calendar-alt"></i> <strong>Fecha:</strong> Viernes, 21 de Noviembre de 2025</p>
+                        <p><i class="fas fa-clock"></i> <strong>Hora:</strong> 8:00 p.m. en adelante</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Lugar:</strong> Av. Palmeras Mz H – Lt 7</p>
+                        <p><i class="fas fa-location-arrow"></i> <strong>Dirección:</strong> AA.HH. El Arenal, Zapallal</p>
+                    </div>
+                    
+                    <!-- Nota del DNI en la sección de ubicación -->
+                    <div class="dni-notice fade-in">
+                        <h4>Importante: Documento de Identidad</h4>
+                        <p>Para acceder al evento, todos los asistentes deberán presentar su <strong>Documento Nacional de Identidad (DNI)</strong> en la entrada. Este será el método de verificación de identidad y confirmación de asistencia.</p>
+                    </div>
+                    
+                    <p>Para cualquier consulta, favor contactar a:</p>
+                    <p><strong>Comité del Centro JAS Ventanilla</strong></p>
+                </div>
+                <div class="location-map fade-in">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d571.4181055780601!2d-77.11139994027668!3d-11.830874274396221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105d42fa2400001%3A0xb9ae33f60778e3a6!2sLa%20Iglesia%20de%20Jesucristo%20de%20los%20Santos%20de%20los%20%C3%9Altimos%20D%C3%ADas!5e0!3m2!1ses-419!2spe!4v1762879136959!5m2!1ses-419!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Inspiración -->
+    <section id="inspiration" class="inspiration-section">
+        <div class="container">
+            <div class="inspiration-content fade-in">
+                <div class="quote-card">
+                    <div class="quote-icon">❝</div>
+                    <blockquote>
+                        "Tenemos que renunciar a algunas cosas buenas para elegir otras que son mejores o excelentes. Porque incluso las cosas buenas, si se acumulan, nos impiden dar prioridad a las cosas más importantes."
+                    </blockquote>
+                    <cite>- Presidente Dallin H. Oaks</cite>
+                    <div class="share-buttons">
+                        <button class="btn share-ig-btn" id="shareQuoteBtn">
+                            <i class="fab fa-instagram"></i> Compartir en Instagram
+                        </button>
+                        <button class="btn share-whatsapp-btn" id="shareWhatsAppBtn">
+                            <i class="fab fa-whatsapp"></i> Compartir en WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para compartir -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h3>Compartir Imagen</h3>
+            <p>La imagen se ha descargado correctamente.</p>
+            <p>Ahora puedes compartirla en tus redes sociales.</p>
+            <div class="share-buttons" style="margin-top: 30px;">
+                <button class="btn share-ig-btn" id="openInstagram">
+                    <i class="fab fa-instagram"></i> Abrir Instagram
+                </button>
+                <button class="btn share-whatsapp-btn" id="openWhatsApp">
+                    <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Álbum de Fotos -->
+    <section id="photo-album" class="photo-album">
+        <div class="container">
+            <h2 class="section-title fade-in">Álbum de Fotos del Evento</h2>
+            
+            <div class="album-instructions fade-in">
+                <p>Queremos crear un recuerdo especial de esta noche. Comparte tus fotos del evento para que podamos crear un álbum comunitario.</p>
+                <p>Todas las fotos compartidas podrán ser utilizadas para crear una publicación especial en nuestras redes sociales.</p>
+            </div>
+            
+            <div class="upload-form fade-in">
+                <h3 style="text-align: center; margin-bottom: 40px; color: var(--primary);">Comparte tus fotos</h3>
+                <form id="photoUploadForm">
+                    <div class="form-group">
+                        <label for="name">Tu nombre completo:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Tu correo electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="photos">Selecciona tus fotos (máximo 5, 5MB max c/u):</label>
+                        <input type="file" id="photos" name="photos" multiple accept="image/*" required>
+                        <small style="display: block; margin-top: 5px; color: #666;">
+                            Formatos aceptados: JPG, PNG, WebP. Tamaño máximo por archivo: 5MB
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Categoría de fotos:</label>
+                        <select id="category" name="category">
+                            <option value="recepcion">Recepción</option>
+                            <option value="baile">Baile</option>
+                            <option value="grupo">Fotos de grupo</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje (opcional):</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Comparte algún recuerdo especial de la noche..."></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Enviar Fotos
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Mensaje de confirmación -->
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Rosa & Clavel</h3>
+                    <p>Una celebración de la comunidad de los Santos de los Últimos Días que honra nuestras tradiciones y fortalece nuestra fe.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/centrojasventanilla/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="#welcome">Bienvenida</a>
+                    <a href="#dress-code">Código de Vestimenta</a>
+                    <a href="#location">Ubicación</a>
+                    <a href="#inspiration">Inspiración</a>
+                    <a href="#photo-album">Álbum de Fotos</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Organizadores</h3>
+                    <p><strong>Centro JAS Ventanilla</strong></p>
+                    <p>Estaca Ventanilla</p>
+                    <p>Estaca Miramar</p>
+                    <p>Estaca Puente Piedra</p>
+                    <div class="organizers">
+                        <p>Evento para jóvenes de 18 a 35 años</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Fiesta de Gala Rosa y Clavel. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ÚNICO CAMBIO: ACTUALIZAR LA URL DEL GOOGLE APPS SCRIPT
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRUsdoFXkWte_kYPK8wGqScEQwY3OAuwVu0eQlLJKrB0RiWBRyv2DZYOFlVzcrJUibfg/exec';
+
+        // El resto de tu JavaScript permanece EXACTAMENTE igual
+        // Efecto de navegación al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Animación de elementos al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Cerrar menú móvil después de hacer clic
+                const navLinks = document.getElementById('navLinks');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Menú móvil
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+            
+            // Cambiar ícono del menú
+            if (this.classList.contains('active')) {
+                this.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                this.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // Contador regresivo
+        function updateCountdown() {
+            const eventDate = new Date('November 21, 2025 20:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Modal para compartir
+        const shareModal = document.getElementById('shareModal');
+        const closeModal = document.getElementById('closeModal');
+        const openInstagram = document.getElementById('openInstagram');
+        const openWhatsApp = document.getElementById('openWhatsApp');
+        
+        closeModal.addEventListener('click', function() {
+            shareModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === shareModal) {
+                shareModal.style.display = 'none';
+            }
+        });
+        
+        openInstagram.addEventListener('click', function() {
+            window.open('https://www.instagram.com/', '_blank');
+        });
+        
+        openWhatsApp.addEventListener('click', function() {
+            window.open('https://web.whatsapp.com/', '_blank');
+        });
+
+        // Compartir frase en Instagram
+        document.getElementById('shareQuoteBtn').addEventListener('click', function() {
+            generateAndDownloadImage();
+        });
+
+        // Compartir en WhatsApp
+        document.getElementById('shareWhatsAppBtn').addEventListener('click', function() {
+            generateAndDownloadImage();
+        });
+
+        // Función para generar y descargar la imagen
+        function generateAndDownloadImage() {
+            // Crear un canvas para generar la imagen
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Configurar el tamaño de la imagen (formato 9:16 para Instagram Stories)
+            canvas.width = 1080;
+            canvas.height = 1920;
+            
+            // Fondo con gradiente elegante
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#F5F5F5');
+            gradient.addColorStop(0.5, '#FFFFFF');
+            gradient.addColorStop(1, '#F5F5F5');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Añadir patrón floral sutil en las esquinas
+            ctx.fillStyle = 'rgba(193, 154, 107, 0.05)';
+            drawFloralPattern(ctx, 100, 100, 200);
+            drawFloralPattern(ctx, canvas.width - 300, 100, 200);
+            drawFloralPattern(ctx, 100, canvas.height - 300, 200);
+            drawFloralPattern(ctx, canvas.width - 300, canvas.height - 300, 200);
+            
+            // Estilo del texto
+            ctx.fillStyle = '#2F2F2F';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Texto de la frase
+            const quote = "Tenemos que renunciar a algunas cosas buenas para elegir otras que son mejores o excelentes. Porque incluso las cosas buenas, si se acumulan, nos impiden dar prioridad a las cosas más importantes.";
+            
+            // Ajustar tamaño de fuente para formato vertical
+            let fontSize = 58;
+            let lines = [];
+            
+            do {
+                ctx.font = `italic ${fontSize}px "Cormorant Garamond"`;
+                lines = getLines(ctx, quote, canvas.width - 160);
+                fontSize -= 2;
+            } while (lines.length > 10 && fontSize > 36);
+            
+            // Dibujar las líneas
+            let lineHeight = fontSize * 1.4;
+            let totalHeight = lines.length * lineHeight;
+            let startY = (canvas.height - totalHeight) / 2 - 100;
+            
+            lines.forEach((line, index) => {
+                ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight));
+            });
+            
+            // Línea decorativa
+            ctx.strokeStyle = '#C19A6B';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2 - 120, startY + totalHeight + 60);
+            ctx.lineTo(canvas.width / 2 + 120, startY + totalHeight + 60);
+            ctx.stroke();
+            
+            // Autor
+            ctx.font = 'bold 42px "Montserrat"';
+            ctx.fillText("- Presidente Dallin H. Oaks", canvas.width / 2, startY + totalHeight + 140);
+            
+            // Información del evento
+            ctx.font = '36px "Cormorant Garamond"';
+            ctx.fillStyle = '#8B4513';
+            ctx.fillText("Rosa & Clavel 2025", canvas.width / 2, canvas.height - 180);
+            
+            ctx.font = '28px "Montserrat"';
+            ctx.fillStyle = '#C19A6B';
+            ctx.fillText("Centro JAS Ventanilla", canvas.width / 2, canvas.height - 120);
+            
+            // Convertir a imagen y descargar
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'frase-presidente-oaks-rosa-clavel.png';
+            link.href = dataUrl;
+            link.click();
+            
+            // Mostrar modal de opciones para compartir
+            setTimeout(() => {
+                shareModal.style.display = 'flex';
+            }, 1000);
+        }
+
+        // Función para dibujar patrón floral
+        function drawFloralPattern(ctx, x, y, size) {
+            ctx.save();
+            ctx.translate(x, y);
+            
+            // Dibujar círculos concéntricos
+            for (let i = 0; i < 5; i++) {
+                const radius = (size / 2) * (i / 5);
+                ctx.beginPath();
+                ctx.arc(size/2, size/2, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(193, 154, 107, 0.1)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            // Dibujar pétalos
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const petalLength = size * 0.4;
+                
+                ctx.beginPath();
+                ctx.moveTo(size/2, size/2);
+                ctx.lineTo(
+                    size/2 + Math.cos(angle) * petalLength,
+                    size/2 + Math.sin(angle) * petalLength
+                );
+                ctx.strokeStyle = 'rgba(193, 154, 107, 0.1)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            ctx.restore();
+        }
+
+        // Función para dividir el texto en líneas
+        function getLines(ctx, text, maxWidth) {
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                const word = words[i];
+                const width = ctx.measureText(currentLine + ' ' + word).width;
+                if (width < maxWidth) {
+                    currentLine += ' ' + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // ===== FORMULARIO CON GOOGLE APPS SCRIPT =====
+        
+        // Manejo del formulario con Google Apps Script
+        document.getElementById('photoUploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Validaciones
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const photos = document.getElementById('photos').files;
+            
+            if (!name || !email) {
+                showFormMessage('Por favor, completa todos los campos obligatorios.', 'error');
+                return;
+            }
+            
+            if (photos.length === 0) {
+                showFormMessage('Por favor, selecciona al menos una foto.', 'error');
+                return;
+            }
+            
+            if (photos.length > 5) {
+                showFormMessage('Por favor, selecciona un máximo de 5 fotos.', 'error');
+                return;
+            }
+            
+            // Validar tamaño de archivos
+            for (let file of photos) {
+                if (file.size > 5 * 1024 * 1024) { // 5MB
+                    showFormMessage(`El archivo "${file.name}" es demasiado grande. Máximo 5MB por archivo.`, 'error');
+                    return;
+                }
+            }
+            
+            // Mostrar loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            formMessage.style.display = 'none';
+            
+            try {
+                // Preparar datos del formulario
+                const formData = {
+                    name: name,
+                    email: email,
+                    category: document.getElementById('category').value,
+                    message: document.getElementById('message').value.trim(),
+                    timestamp: new Date().toISOString(),
+                    filenames: Array.from(photos).map(file => file.name)
+                };
+                
+                // Enviar datos al Google Apps Script
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showFormMessage('¡Gracias por compartir tus fotos! Hemos recibido tu envío correctamente.', 'success');
+                    this.reset();
+                } else {
+                    showFormMessage('Hubo un error al enviar las fotos. Por favor, inténtalo de nuevo.', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showFormMessage('Error de conexión. Por favor, verifica tu internet e inténtalo de nuevo.', 'error');
+            } finally {
+                // Restaurar botón
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        function showFormMessage(message, type) {
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = message;
+            formMessage.className = 'form-message ' + type;
+            formMessage.style.display = 'block';
+        }
+
+        // Validación en tiempo real
+        document.getElementById('photos').addEventListener('change', function() {
+            const files = this.files;
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            
+            for (let file of files) {
+                if (file.size > maxSize) {
+                    showFormMessage(`El archivo "${file.name}" es demasiado grande. Máximo 5MB por archivo.`, 'error');
+                    this.value = ''; // Limpiar selección
+                    break;
+                }
+            }
+            
+            if (files.length > 5) {
+                showFormMessage('Máximo 5 archivos permitidos.', 'error');
+                this.value = ''; // Limpiar selección
+            }
+        });
+    </script>
+</body>
+</html>
