@@ -90,7 +90,7 @@
             border: none;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 0.9rem;
+        font-size: 0.9rem;
             box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
         }
         
@@ -555,7 +555,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23C19A6B' fill-opacity='0.1' d='M11 18c3[...]
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23C19A6B' fill-opacity='0.1' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7[...]
             opacity: 0.3;
             z-index: 0;
         }
@@ -620,7 +620,7 @@
         .share-whatsapp-btn:hover {
             background: linear-gradient(45deg, #128C7E, #25D366);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);.
         }
         
         .share-buttons {
@@ -1010,7 +1010,6 @@
     </style>
 </head>
 <body>
-    <!-- Todo tu HTML original permanece exactamente igual -->
     <nav id="navbar">
         <div class="container nav-container">
             <div class="logo">
@@ -1027,3 +1026,535 @@
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content fade-in">
+            <div class="floral-divider">✦ ✦ ✦</div>
+            <h1>Fiesta de Gala<br>Rosa & Clavel</h1>
+            <p class="hero-date">Viernes, 21 de Noviembre de 2025 - 8:00 p.m.</p>
+            <p>Una velada especial donde se celebran los valores de la juventud, la fe y la elegancia</p>
+            
+            <!-- Contador regresivo -->
+            <div class="countdown fade-in">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+            
+            <div class="floral-divider">✦ ✦ ✦</div>
+            <p class="share-moment">Comparte este momento especial</p>
+        </div>
+    </section>
+
+    <!-- Sección de Bienvenida -->
+    <section id="welcome" class="welcome">
+        <div class="floral-accent floral-1"></div>
+        <div class="floral-accent floral-2"></div>
+        <div class="container">
+            <div class="welcome-content fade-in">
+                <h2 class="section-title">Bienvenidos a Nuestra Gala Anual</h2>
+                <p>Te damos la bienvenida a una velada especial donde se celebran los valores de la juventud, la fe y la elegancia.</p>
+                <p>Esta será una noche llena de música, baile y compañía edificante. Un momento para fortalecer lazos y crear recuerdos inolvidables.</p>
+                
+                <div class="confirmation-notice fade-in">
+                    <h4>Confirmación de Asistencia</h4>
+                    <p>La asistencia es personal y requiere conformidad de tu obispo o presidente de rama. Si ya completaste el formulario, tu líder eclesiástico dará la conformidad final.</p>
+                </div>
+                
+                <div class="age-range fade-in">Jóvenes de 18 a 35 años</div>
+                
+                <div class="welcome-features">
+                    <div class="feature fade-in">
+                        <i class="fas fa-glass-cheers"></i>
+                        <h3>Recepción Elegante</h3>
+                        <p>Ambiente especial con música y decoración para iniciar la noche</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Entremeses</h3>
+                        <p>Deliciosos entremeses a cargo de cada estaca participante</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <i class="fas fa-music"></i>
+                        <h3>Baile y Música</h3>
+                        <p>Espacio para bailar con música seleccionada para la ocasión</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Dress Code -->
+    <section id="dress-code" class="dress-code">
+        <div class="container">
+            <h2 class="section-title fade-in">Código de Vestimenta</h2>
+            <div class="dress-container">
+                <div class="dress-card fade-in">
+                    <div class="dress-icon">👔</div>
+                    <h3>Para Caballeros</h3>
+                    <ul>
+                        <li>Traje formal oscuro (azul marino, negro o gris oscuro)</li>
+                        <li>Corbata o corbatín elegante</li>
+                        <li>Zapatos de vestir de cuero</li>
+                        <li>Se sugiere incorporar el color marrón o beige en algún detalle</li>
+                        <li>Vestimenta modesta y apropiada</li>
+                    </ul>
+                </div>
+                <div class="dress-card fade-in">
+                    <div class="dress-icon">👗</div>
+                    <h3>Para Damas</h3>
+                    <ul>
+                        <li>Vestido largo o de cóctel elegante</li>
+                        <li>Preferiblemente en tonos tierra, marfil o verde oscuro</li>
+                        <li>Zapatos formales cerrados o sandalias elegantes</li>
+                        <li>Accesorios discretos y joyería clásica</li>
+                        <li>Vestimenta modesta que refleje nuestros valores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Ubicación -->
+    <section id="location" class="location">
+        <div class="container">
+            <div class="location-content">
+                <div class="location-info fade-in">
+                    <h2 class="section-title">Ubicación y Fecha</h2>
+                    <div class="location-details">
+                        <p><i class="fas fa-calendar-alt"></i> <strong>Fecha:</strong> Viernes, 21 de Noviembre de 2025</p>
+                        <p><i class="fas fa-clock"></i> <strong>Hora:</strong> 8:00 p.m. en adelante</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Lugar:</strong> Av. Palmeras Mz H – Lt 7</p>
+                        <p><i class="fas fa-location-arrow"></i> <strong>Dirección:</strong> AA.HH. El Arenal, Zapallal</p>
+                    </div>
+                    
+                    <!-- Nota del DNI en la sección de ubicación -->
+                    <div class="dni-notice fade-in">
+                        <h4>Importante: Documento de Identidad</h4>
+                        <p>Para acceder al evento, todos los asistentes deberán presentar su <strong>Documento Nacional de Identidad (DNI)</strong> en la entrada. Este será el método de verificación de identidad y confirmación de asistencia.</p>
+                    </div>
+                    
+                    <p>Para cualquier consulta, favor contactar a:</p>
+                    <p><strong>Comité del Centro JAS Ventanilla</strong></p>
+                </div>
+                <div class="location-map fade-in">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d571.4181055780601!2d-77.11139994027668!3d-11.830874274396221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105d42fa2400001%3A0xb9ae33f60778e3a6!2sLa%20Iglesia%20de%20Jesucristo%20de%20los%20Santos%20de%20los%20%C3%9Altimos%20D%C3%ADas!5e0!3m2!1ses-419!2spe!4v1762879136959!5m2!1ses-419!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Inspiración -->
+    <section id="inspiration" class="inspiration-section">
+        <div class="container">
+            <div class="inspiration-content fade-in">
+                <div class="quote-card">
+                    <div class="quote-icon">❝</div>
+                    <blockquote>
+                        "Tenemos que renunciar a algunas cosas buenas para elegir otras que son mejores o excelentes. Porque incluso las cosas buenas, si se acumulan, nos impiden dar prioridad a las cosas más importantes."
+                    </blockquote>
+                    <cite>- Presidente Dallin H. Oaks</cite>
+                    <div class="share-buttons">
+                        <button class="btn share-ig-btn" id="shareQuoteBtn">
+                            <i class="fab fa-instagram"></i> Compartir en Instagram
+                        </button>
+                        <button class="btn share-whatsapp-btn" id="shareWhatsAppBtn">
+                            <i class="fab fa-whatsapp"></i> Compartir en WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para compartir -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h3>Compartir Imagen</h3>
+            <p>La imagen se ha descargado correctamente.</p>
+            <p>Ahora puedes compartirla en tus redes sociales.</p>
+            <div class="share-buttons" style="margin-top: 30px;">
+                <button class="btn share-ig-btn" id="openInstagram">
+                    <i class="fab fa-instagram"></i> Abrir Instagram
+                </button>
+                <button class="btn share-whatsapp-btn" id="openWhatsApp">
+                    <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Álbum de Fotos -->
+    <section id="photo-album" class="photo-album">
+        <div class="container">
+            <h2 class="section-title fade-in">Álbum de Fotos del Evento</h2>
+            
+            <div class="album-instructions fade-in">
+                <p>Queremos crear un recuerdo especial de esta noche. Comparte tus fotos del evento para que podamos crear un álbum comunitario.</p>
+                <p>Todas las fotos compartidas podrán ser utilizadas para crear una publicación especial en nuestras redes sociales.</p>
+            </div>
+            
+            <div class="upload-form fade-in">
+                <h3 style="text-align: center; margin-bottom: 40px; color: var(--primary);">Comparte tus fotos</h3>
+                <form id="photoUploadForm">
+                    <div class="form-group">
+                        <label for="name">Tu nombre completo:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Tu correo electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="photos">Selecciona tus fotos (máximo 5, 5MB max c/u):</label>
+                        <input type="file" id="photos" name="photos" multiple accept="image/*" required>
+                        <small style="display: block; margin-top: 5px; color: #666;">
+                            Formatos aceptados: JPG, PNG, WebP. Tamaño máximo por archivo: 5MB
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Categoría de fotos:</label>
+                        <select id="category" name="category">
+                            <option value="recepcion">Recepción</option>
+                            <option value="baile">Baile</option>
+                            <option value="grupo">Fotos de grupo</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje (opcional):</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Comparte algún recuerdo especial de la noche..."></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Enviar Fotos
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Mensaje de confirmación -->
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Rosa & Clavel</h3>
+                    <p>Una celebración de la comunidad de los Santos de los Últimos Días que honra nuestras tradiciones y fortalece nuestra fe.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/centrojasventanilla/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="#welcome">Bienvenida</a>
+                    <a href="#dress-code">Código de Vestimenta</a>
+                    <a href="#location">Ubicación</a>
+                    <a href="#inspiration">Inspiración</a>
+                    <a href="#photo-album">Álbum de Fotos</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Organizadores</h3>
+                    <p><strong>Centro JAS Ventanilla</strong></p>
+                    <p>Estaca Ventanilla</p>
+                    <p>Estaca Miramar</p>
+                    <p>Estaca Puente Piedra</p>
+                    <div class="organizers">
+                        <p>Evento para jóvenes de 18 a 35 años</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Fiesta de Gala Rosa y Clavel. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS ORIGINALES: (no modifiqué estos; mantienen la funcionalidad de contador, modal, generación imagen, etc.) -->
+    <script>
+        // Efecto de navegación al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Animación de elementos al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Cerrar menú móvil después de hacer clic
+                const navLinks = document.getElementById('navLinks');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Menú móvil
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+            
+            // Cambiar ícono del menú
+            if (this.classList.contains('active')) {
+                this.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                this.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // Contador regresivo
+        function updateCountdown() {
+            const eventDate = new Date('November 21, 2025 20:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Modal para compartir
+        const shareModal = document.getElementById('shareModal');
+        const closeModal = document.getElementById('closeModal');
+        const openInstagram = document.getElementById('openInstagram');
+        const openWhatsApp = document.getElementById('openWhatsApp');
+        
+        closeModal.addEventListener('click', function() {
+            shareModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === shareModal) {
+                shareModal.style.display = 'none';
+            }
+        });
+        
+        openInstagram.addEventListener('click', function() {
+            window.open('https://www.instagram.com/', '_blank');
+        });
+        
+        openWhatsApp.addEventListener('click', function() {
+            window.open('https://web.whatsapp.com/', '_blank');
+        });
+
+        // Compartir frase en Instagram
+        document.getElementById('shareQuoteBtn').addEventListener('click', function() {
+            generateAndDownloadImage();
+        });
+
+        // Compartir en WhatsApp
+        document.getElementById('shareWhatsAppBtn').addEventListener('click', function() {
+            generateAndDownloadImage();
+        });
+
+        // Función para generar y descargar la imagen
+        function generateAndDownloadImage() {
+            // Crear un canvas para generar la imagen
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Configurar el tamaño de la imagen (formato 9:16 para Instagram Stories)
+            canvas.width = 1080;
+            canvas.height = 1920;
+            
+            // Fondo con gradiente elegante
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#F5F5F5');
+            gradient.addColorStop(0.5, '#FFFFFF');
+            gradient.addColorStop(1, '#F5F5F5');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Añadir patrón floral sutil en las esquinas
+            ctx.fillStyle = 'rgba(193, 154, 107, 0.05)';
+            drawFloralPattern(ctx, 100, 100, 200);
+            drawFloralPattern(ctx, canvas.width - 300, 100, 200);
+            drawFloralPattern(ctx, 100, canvas.height - 300, 200);
+            drawFloralPattern(ctx, canvas.width - 300, canvas.height - 300, 200);
+            
+            // Estilo del texto
+            ctx.fillStyle = '#2F2F2F';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Texto de la frase
+            const quote = "Tenemos que renunciar a algunas cosas buenas para elegir otras que son mejores o excelentes. Porque incluso las cosas buenas, si se acumulan, nos impiden dar prioridad a las cosas más importantes.";
+            
+            // Ajustar tamaño de fuente para formato vertical
+            let fontSize = 58;
+            let lines = [];
+            
+            do {
+                ctx.font = `italic ${fontSize}px "Cormorant Garamond"`;
+                lines = getLines(ctx, quote, canvas.width - 160);
+                fontSize -= 2;
+            } while (lines.length > 10 && fontSize > 36);
+            
+            // Dibujar las líneas
+            let lineHeight = fontSize * 1.4;
+            let totalHeight = lines.length * lineHeight;
+            let startY = (canvas.height - totalHeight) / 2 - 100;
+            
+            lines.forEach((line, index) => {
+                ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight));
+            });
+            
+            // Línea decorativa
+            ctx.strokeStyle = '#C19A6B';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2 - 120, startY + totalHeight + 60);
+            ctx.lineTo(canvas.width / 2 + 120, startY + totalHeight + 60);
+            ctx.stroke();
+            
+            // Autor
+            ctx.font = 'bold 42px "Montserrat"';
+            ctx.fillText("- Presidente Dallin H. Oaks", canvas.width / 2, startY + totalHeight + 140);
+            
+            // Información del evento
+            ctx.font = '36px "Cormorant Garamond"';
+            ctx.fillStyle = '#8B4513';
+            ctx.fillText("Rosa & Clavel 2025", canvas.width / 2, canvas.height - 180);
+            
+            ctx.font = '28px "Montserrat"';
+            ctx.fillStyle = '#C19A6B';
+            ctx.fillText("Centro JAS Ventanilla", canvas.width / 2, canvas.height - 120);
+            
+            // Convertir a imagen y descargar
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'frase-presidente-oaks-rosa-clavel.png';
+            link.href = dataUrl;
+            link.click();
+            
+            // Mostrar modal de opciones para compartir
+            setTimeout(() => {
+                shareModal.style.display = 'flex';
+            }, 1000);
+        }
+
+        // Función para dibujar patrón floral
+        function drawFloralPattern(ctx, x, y, size) {
+            ctx.save();
+            ctx.translate(x, y);
+            
+            // Dibujar círculos concéntricos
+            for (let i = 0; i < 5; i++) {
+                const radius = (size / 2) * (i / 5);
+                ctx.beginPath();
+                ctx.arc(size/2, size/2, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(193, 154, 107, 0.1)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            // Dibujar pétalos
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const petalLength = size * 0.4;
+                
+                ctx.beginPath();
+                ctx.moveTo(size/2, size/2);
+                ctx.lineTo(
+                    size/2 + Math.cos(angle) * petalLength,
+                    size/2 + Math.sin(angle) * petalLength
+                );
+                ctx.strokeStyle = 'rgba(193, 154, 107, 0.1)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            ctx.restore();
+        }
+
+        // Función para dividir el texto en líneas
+        function getLines(ctx, text, maxWidth) {
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                const word = words[i];
+                const width = ctx.measureText(currentLine + ' ' + word).width;
+                if (width < maxWidth) {
+                    currentLine += ' ' + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+    </script>
+
+    <!-- Incluir el script externo con la lógica Cloudinary (no modifica estilos ni el JS original) -->
+    <script src="upload-cloudinary.js"></script>
+</body>
+</html>
