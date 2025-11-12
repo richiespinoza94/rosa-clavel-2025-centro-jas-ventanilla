@@ -1,6 +1,5 @@
-// upload-cloudinary.js
+// upload-cloudinary.js - VERSIÓN CORREGIDA
 // Minimal, self-contained Cloudinary uploader + send URLs to Google Apps Script.
-// No globals leaked, no changes to DOM structure or styles.
 
 (function () {
   const CLOUD_NAME = 'dan8sipgs';
@@ -17,7 +16,6 @@
       fd.append('file', file);
       fd.append('upload_preset', UPLOAD_PRESET);
 
-      // IMPORTANT: Do not set Content-Type header; browser handles it for FormData
       const res = await fetch(uploadUrl, { method: 'POST', body: fd });
       if (!res.ok) {
         const txt = await res.text();
@@ -92,24 +90,53 @@
         images: uploaded
       };
 
+      console.log('Enviando a Google Apps Script:', payload);
+
       const resp = await fetch(SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
-      const result = await resp.json();
-      if (result && result.success) {
-        show('¡Gracias! Tus fotos fueron subidas correctamente.', 'success');
+      console.log('Response status:', resp.status);
+
+      // **CORRECCIÓN CLAVE: Manejar respuesta como texto primero**
+      const responseText = await resp.text();
+      console.log('Response text:', responseText);
+
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('Error parsing JSON response:', parseError);
+        throw new Error('La respuesta del servidor no es JSON válido: ' + responseText);
+      }
+
+      console.log('Parsed result:', result);
+
+      // **CORRECCIÓN: Verificar explícitamente result.success**
+      if (result && result.success === true) {
+        show(result.message || '¡Gracias! Tus fotos fueron subidas correctamente.', 'success');
         form.reset();
       } else {
         console.error('Apps Script response:', result);
-        show('Hubo un error registrando el envío. Intenta de nuevo.', 'error');
+        const errorMsg = result.message || result.error || 'Hubo un error registrando el envío. Intenta de nuevo.';
+        show(errorMsg, 'error');
       }
 
     } catch (err) {
       console.error(err);
-      show('Error al subir imágenes. Verifica tu conexión e inténtalo de nuevo.', 'error');
+      
+      // **CORRECCIÓN: Mensajes de error más específicos**
+      if (err.message.includes('Cloudinary upload failed')) {
+        show('Error al subir las imágenes. Verifica que los archivos sean imágenes válidas.', 'error');
+      } else if (err.message.includes('Failed to fetch')) {
+        show('Error de conexión. Verifica tu internet e inténtalo de nuevo.', 'error');
+      } else if (err.message.includes('La respuesta del servidor no es JSON válido')) {
+        show('Error inesperado del servidor. Por favor, contacta al organizador.', 'error');
+      } else {
+        show('Error al subir imágenes. Verifica tu conexión e inténtalo de nuevo.', 'error');
+      }
     } finally {
       if (submitBtn) {
         submitBtn.innerHTML = originalBtn;
