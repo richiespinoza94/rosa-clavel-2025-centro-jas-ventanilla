@@ -2,7 +2,7 @@
 (function () {
   const CLOUD_NAME = 'dan8sipgs';
   const UPLOAD_PRESET = 'rosayclavel2025ventanilla';
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrtN24l9-wpzsYhGd-wUKxKq4WydKuNzS4mTZNGIV6tloFB-AyT4CiVocCBPolqGJePA/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxYGn5PaXflNoTXp_0BKhhY2EeKHKasjsJIz3k9WCXjJDofK7KdwVeMzrawm45xwMRxcw/exec';
 
   async function uploadFilesToCloudinary(files) {
     const uploadUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`;
