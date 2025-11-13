@@ -8,17 +8,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== ESTILOS ORIGINALES ===== */
+        /**
+         * ========================================
+         * ESTILOS CSS - FIESTA DE GALA ROSA Y CLAVEL
+         * ========================================
+         *
+         * Paleta de colores elegante inspirada en temas florales
+         * - Marrón (Primary): Elegancia clásica
+         * - Oro/Dorado (Accent): Acentos de lujo
+         * - Rosa/Clavel: Tonos florales suaves
+         *
+         * Sistema modular con variables CSS (custom properties)
+         * para mantener consistencia y facilitar cambios globales
+         */
+
+        /**
+         * VARIABLES GLOBALES (Custom Properties)
+         * Definen la paleta de colores y estilos base del sitio
+         */
         :root {
-            --primary: #8B4513;
-            --secondary: #C19A6B;
-            --accent: #D4AF37;
-            --light: #F5F5F5;
-            --dark: #2F2F2F;
-            --text: #4A4A4A;
-            --success: #2E8B57;
-            --rose: #D8A48F;
-            --carnation: #E8B4B8;
+            /* Colores principales */
+            --primary: #8B4513;      /* Marrón: Color principal elegante */
+            --secondary: #C19A6B;    /* Tan/Beige: Color secundario suave */
+            --accent: #D4AF37;       /* Oro: Acentos y detalles valiosos */
+
+            /* Colores neutralos */
+            --light: #F5F5F5;        /* Gris muy claro: Fondos */
+            --dark: #2F2F2F;         /* Gris oscuro: Texto principal */
+            --text: #4A4A4A;         /* Gris oscuro medio: Texto secundario */
+
+            /* Colores semánticos */
+            --success: #2E8B57;      /* Verde: Estado exitoso */
+
+            /* Colores temáticos florales */
+            --rose: #D8A48F;         /* Rosa suave para detalles */
+            --carnation: #E8B4B8;    /* Clavel: Color floral del evento */
         }
         
         * {
@@ -1523,7 +1547,31 @@
     </footer>
 
     <script>
-        // Efecto de navegación al hacer scroll
+        /**
+         * ========================================
+         * SCRIPT PRINCIPAL - FUNCIONALIDADES CLAVE
+         * ========================================
+         *
+         * Este archivo contiene todas las funcionalidades JavaScript
+         * para el sitio web de la Fiesta de Gala Rosa y Clavel.
+         *
+         * Incluye:
+         * - Efectos de navegación y scroll
+         * - Animaciones de fade-in
+         * - Navegación suave
+         * - Menú móvil responsive
+         * - Contador regresivo (countdown)
+         * - Modal para compartir
+         * - Generación de imágenes en canvas para compartir
+         */
+
+        // ===== SECCIÓN 1: EFECTOS DE NAVEGACIÓN Y SCROLL =====
+
+        /**
+         * Efecto de navegación al hacer scroll
+         * Añade/quita la clase 'scrolled' a la barra de navegación
+         * cuando el usuario ha hecho scroll más de 50px
+         */
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -1532,38 +1580,51 @@
                 navbar.classList.remove('scrolled');
             }
         });
-        
-        // Animación de elementos al hacer scroll
+
+        // ===== SECCIÓN 2: ANIMACIONES FADE-IN =====
+
+        /**
+         * Sistema de animación fade-in al hacer scroll
+         * Los elementos con clase 'fade-in' se animan cuando son visibles
+         * Utiliza Intersection Observer para optimización de rendimiento
+         */
         const fadeElements = document.querySelectorAll('.fade-in');
-        
+
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 entry.target.classList.add('visible');
-                appearOnScroll.unobserve(entry.target);
+                appearOnScroll.unobserve(entry.target); // Optimización: deja de observar después de hacer visible
             });
         }, { threshold: 0.1 });
-        
+
         fadeElements.forEach(element => {
             appearOnScroll.observe(element);
         });
-        
-        // Navegación suave
+
+        // ===== SECCIÓN 3: NAVEGACIÓN SUAVE (SMOOTH SCROLLING) =====
+
+        /**
+         * Sistema de navegación suave con anclajes (#)
+         * Permite desplazarse suavemente a diferentes secciones
+         * Cierra automáticamente el menú móvil al navegar
+         */
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 80, // -80 compensa la altura de la navbar
                         behavior: 'smooth'
                     });
                 }
-                
+
+                // Cierra el menú móvil después de hacer clic
                 const navLinks = document.getElementById('navLinks');
                 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
                 navLinks.classList.remove('active');
@@ -1571,67 +1632,95 @@
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
-        
-        // Menú móvil
+
+        // ===== SECCIÓN 4: MENÚ MÓVIL RESPONSIVE =====
+
+        /**
+         * Controlador del menú móvil
+         * Alternar visibilidad del menú en dispositivos pequeños
+         * Cambia el icono entre 'bars' y 'times'
+         */
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
-        
+
         mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
             this.classList.toggle('active');
-            
+
             if (this.classList.contains('active')) {
                 this.innerHTML = '<i class="fas fa-times"></i>';
             } else {
                 this.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
-        
-        // Contador regresivo
+
+        // ===== SECCIÓN 5: CONTADOR REGRESIVO (COUNTDOWN) =====
+
+        /**
+         * Actualiza el contador regresivo en tiempo real
+         * Calcula días, horas, minutos y segundos restantes
+         * hasta el evento del 21 de Noviembre de 2025 a las 8:00 PM
+         */
         function updateCountdown() {
             const eventDate = new Date('November 21, 2025 20:00:00').getTime();
             const now = new Date().getTime();
             const timeLeft = eventDate - now;
-            
+
+            // Cálculos de unidades de tiempo
             const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
+
+            // Actualiza los elementos del DOM con formato de dos dígitos
             document.getElementById('days').textContent = days.toString().padStart(2, '0');
             document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
             document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
-        
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
 
-        // Modal para compartir
+        // Actualiza cada segundo
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Llamada inicial
+
+        // ===== SECCIÓN 6: MODAL PARA COMPARTIR =====
+
+        /**
+         * Sistema de modal para compartir imágenes en redes sociales
+         * Permite cerrar el modal haciendo clic en el botón X o fuera del contenido
+         */
         const shareModal = document.getElementById('shareModal');
         const closeModal = document.getElementById('closeModal');
         const openInstagram = document.getElementById('openInstagram');
         const openWhatsApp = document.getElementById('openWhatsApp');
-        
+
         closeModal.addEventListener('click', function() {
             shareModal.style.display = 'none';
         });
-        
+
+        // Cierra el modal si se hace clic fuera del contenido
         window.addEventListener('click', function(e) {
             if (e.target === shareModal) {
                 shareModal.style.display = 'none';
             }
         });
-        
+
+        // Abre Instagram en una nueva pestaña
         openInstagram.addEventListener('click', function() {
             window.open('https://www.instagram.com/', '_blank');
         });
-        
+
+        // Abre WhatsApp en una nueva pestaña
         openWhatsApp.addEventListener('click', function() {
             window.open('https://web.whatsapp.com/', '_blank');
         });
 
-        // Compartir frase en Instagram
+        // ===== SECCIÓN 7: FUNCIONALIDAD DE COMPARTIR CITA =====
+
+        /**
+         * Vincula los botones de compartir cita con la función
+         * de generación y descarga de imagen
+         */
         document.getElementById('shareQuoteBtn').addEventListener('click', function() {
             generateAndDownloadImage();
         });
@@ -1640,83 +1729,120 @@
             generateAndDownloadImage();
         });
 
-        // Función para generar y descargar la imagen
+        // ===== SECCIÓN 8: GENERACIÓN DE IMÁGENES EN CANVAS =====
+
+        /**
+         * Genera una imagen personalizada con la cita del Presidente Oaks
+         * para compartir en redes sociales (Instagram y WhatsApp)
+         *
+         * Características:
+         * - Fondo con gradiente elegante
+         * - Patrones florales decorativos en las esquinas
+         * - Texto formateado y centrado
+         * - Dimensiones optimizadas para Instagram (1080x1920px)
+         * - Descarga automática de la imagen generada
+         * - Muestra modal con instrucciones de compartición
+         */
         function generateAndDownloadImage() {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            
+
+            // Dimensiones optimizadas para Instagram Stories y Feed
             canvas.width = 1080;
             canvas.height = 1920;
-            
+
+            // Crea gradiente elegante como fondo
             const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
             gradient.addColorStop(0, '#F5F5F5');
             gradient.addColorStop(0.5, '#FFFFFF');
             gradient.addColorStop(1, '#F5F5F5');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
+            // Añade patrones florales decorativos en las cuatro esquinas
             ctx.fillStyle = 'rgba(193, 154, 107, 0.05)';
             drawFloralPattern(ctx, 100, 100, 200);
             drawFloralPattern(ctx, canvas.width - 300, 100, 200);
             drawFloralPattern(ctx, 100, canvas.height - 300, 200);
             drawFloralPattern(ctx, canvas.width - 300, canvas.height - 300, 200);
-            
+
+            // Configura estilos de texto
             ctx.fillStyle = '#2F2F2F';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            
+
+            // La cita del Presidente Oaks
             const quote = "Tenemos que renunciar a algunas cosas buenas para elegir otras que son mejores o excelentes. Porque incluso las cosas buenas, si se acumulan, nos impiden dar prioridad a las cosas más importantes.";
-            
+
+            // Calcula el tamaño de fuente óptimo para que el texto quepa
             let fontSize = 58;
             let lines = [];
-            
+
             do {
                 ctx.font = `italic ${fontSize}px "Cormorant Garamond"`;
                 lines = getLines(ctx, quote, canvas.width - 160);
                 fontSize -= 2;
             } while (lines.length > 10 && fontSize > 36);
-            
+
+            // Calcula posición vertical del texto
             let lineHeight = fontSize * 1.4;
             let totalHeight = lines.length * lineHeight;
             let startY = (canvas.height - totalHeight) / 2 - 100;
-            
+
+            // Dibuja cada línea de texto
             lines.forEach((line, index) => {
                 ctx.fillText(line, canvas.width / 2, startY + (index * lineHeight));
             });
-            
+
+            // Línea decorativa bajo la cita
             ctx.strokeStyle = '#C19A6B';
             ctx.lineWidth = 3;
             ctx.beginPath();
             ctx.moveTo(canvas.width / 2 - 120, startY + totalHeight + 60);
             ctx.lineTo(canvas.width / 2 + 120, startY + totalHeight + 60);
             ctx.stroke();
-            
+
+            // Atribución de la cita
             ctx.font = 'bold 42px "Montserrat"';
             ctx.fillText("- Presidente Dallin H. Oaks", canvas.width / 2, startY + totalHeight + 140);
-            
+
+            // Título del evento
             ctx.font = '36px "Cormorant Garamond"';
             ctx.fillStyle = '#8B4513';
             ctx.fillText("Rosa & Clavel 2025", canvas.width / 2, canvas.height - 180);
-            
+
+            // Subtítulo del organizador
             ctx.font = '28px "Montserrat"';
             ctx.fillStyle = '#C19A6B';
             ctx.fillText("Centro JAS Ventanilla", canvas.width / 2, canvas.height - 120);
-            
+
+            // Convierte canvas a imagen y descarga
             const dataUrl = canvas.toDataURL('image/png');
             const link = document.createElement('a');
             link.download = 'frase-presidente-oaks-rosa-clavel.png';
             link.href = dataUrl;
             link.click();
-            
+
+            // Muestra modal después de 1 segundo
             setTimeout(() => {
                 shareModal.style.display = 'flex';
             }, 1000);
         }
 
+        /**
+         * Dibuja un patrón floral decorativo usando círculos y líneas
+         * Crea un patrón radial con pétalos
+         *
+         * @param {CanvasRenderingContext2D} ctx - Contexto 2D del canvas
+         * @param {number} x - Posición X
+         * @param {number} y - Posición Y
+         * @param {number} size - Tamaño del patrón
+         */
         function drawFloralPattern(ctx, x, y, size) {
             ctx.save();
             ctx.translate(x, y);
-            
+
+            // Dibuja círculos concéntricos
             for (let i = 0; i < 5; i++) {
                 const radius = (size / 2) * (i / 5);
                 ctx.beginPath();
@@ -1725,11 +1851,12 @@
                 ctx.lineWidth = 2;
                 ctx.stroke();
             }
-            
+
+            // Dibuja pétalos (líneas radiantes)
             for (let i = 0; i < 8; i++) {
                 const angle = (i / 8) * Math.PI * 2;
                 const petalLength = size * 0.4;
-                
+
                 ctx.beginPath();
                 ctx.moveTo(size/2, size/2);
                 ctx.lineTo(
@@ -1740,10 +1867,19 @@
                 ctx.lineWidth = 2;
                 ctx.stroke();
             }
-            
+
             ctx.restore();
         }
 
+        /**
+         * Divide un texto en múltiples líneas basándose en el ancho máximo disponible
+         * Útil para ajustar texto a un contenedor con ancho limitado
+         *
+         * @param {CanvasRenderingContext2D} ctx - Contexto 2D del canvas
+         * @param {string} text - Texto a dividir
+         * @param {number} maxWidth - Ancho máximo disponible
+         * @returns {Array<string>} Array de líneas de texto ajustadas
+         */
         function getLines(ctx, text, maxWidth) {
             const words = text.split(' ');
             const lines = [];
@@ -1766,12 +1902,27 @@
     
     <!-- Script para revelar flores al hacer scroll -->
     <script>
+    /**
+     * IIFE (Immediately Invoked Function Expression)
+     * Maneja la animación de decoraciones florales al hacer scroll
+     *
+     * Responsabilidades:
+     * - Observa elementos con atributo data-scroll-reveal
+     * - Añade clase 'visible' cuando el elemento entra en el viewport
+     * - Utiliza Intersection Observer para optimización de rendimiento
+     */
     (function() {
+        // Configuración del Intersection Observer
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.1,              // Activar cuando 10% del elemento es visible
+            rootMargin: '0px 0px -100px 0px' // Aumenta el área de activación hacia abajo
         };
 
+        /**
+         * Crea un nuevo Intersection Observer
+         * Observa elementos con data-scroll-reveal y les añade la clase 'visible'
+         * cuando entran en el viewport
+         */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1780,16 +1931,24 @@
             });
         }, observerOptions);
 
+        /**
+         * Al cargar el DOM completamente:
+         * 1. Selecciona todos los elementos con data-scroll-reveal
+         * 2. Comienza a observar cada uno
+         * 3. Registra en console que las decoraciones están activadas
+         */
         document.addEventListener('DOMContentLoaded', () => {
             const flowers = document.querySelectorAll('[data-scroll-reveal]');
             flowers.forEach(flower => observer.observe(flower));
-            
-            console.log('🌸 Decoraciones scroll activadas');
+
+            console.log('🌸 Decoraciones scroll activadas - Sistema listo');
         });
     })();
     </script>
-    
-    <!-- Script de Cloudinary (archivo externo) -->
+
+    <!-- Cargar script externo para Cloudinary -->
+    <!-- Este archivo contiene la lógica de subida de fotos a Cloudinary -->
+    <!-- y envío de datos a Google Apps Script -->
     <script src="upload-cloudinary.js"></script>
 </body>
 </html>
