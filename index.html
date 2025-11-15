@@ -119,6 +119,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            gap: 20px;
         }
         
         .logo {
@@ -181,6 +183,52 @@
             color: var(--primary);
             cursor: pointer;
             z-index: 1001;
+        }
+        
+        /* ===== BOTÓN DE INSCRIPCIÓN ===== */
+        .btn-inscription {
+            background: linear-gradient(135deg, var(--primary), #6b3410);
+            color: white;
+            padding: 13px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            border: none;
+            display: inline-block;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.25);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .btn-inscription:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-inscription:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        .btn-inscription:hover:before {
+            left: 100%;
+        }
+
+        .btn-inscription i {
+            margin-right: 8px;
+            font-size: 0.95rem;
         }
         
         .hero {
@@ -876,6 +924,20 @@
             .mobile-menu-btn {
                 display: block;
             }
+            
+            .btn-inscription {
+                padding: 11px 20px;
+                font-size: 0.8rem;
+                display: none;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 992px) {
+            .btn-inscription {
+                display: inline-block;
+                padding: 11px 20px;
+                font-size: 0.8rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -941,6 +1003,12 @@
                 margin-left: 0;
                 margin-top: 15px;
             }
+            
+            .btn-inscription {
+                display: inline-block;
+                padding: 10px 16px;
+                font-size: 0.75rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -967,6 +1035,10 @@
             
             .quote-card blockquote {
                 font-size: 1.5rem;
+            }
+            
+            .btn-inscription {
+                display: none;
             }
         }
         
@@ -1249,13 +1321,18 @@
                 <i class="fas fa-crown"></i>
                 <span>Rosa & Clavel</span>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#welcome">Bienvenida</a></li>
-                <li><a href="#dress-code">Vestimenta</a></li>
-                <li><a href="#location">Ubicación</a></li>
-                <li><a href="#inspiration">Inspiración</a></li>
-                <li><a href="#photo-album">Álbum</a></li>
-            </ul>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#welcome">Bienvenida</a></li>
+                    <li><a href="#dress-code">Vestimenta</a></li>
+                    <li><a href="#location">Ubicación</a></li>
+                    <li><a href="#inspiration">Inspiración</a></li>
+                    <li><a href="#photo-album">Álbum</a></li>
+                </ul>
+                <a href="https://forms.gle/pFuqjVCheXwDbkB36" class="btn-inscription" target="_blank">
+                    <i class="fas fa-edit"></i> Inscripción
+                </a>
+            </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
