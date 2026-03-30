@@ -1283,6 +1283,73 @@
                 display: none;
             }
         }
+        /* ===== SECCIÓN LETRA ANIMADA - DANNY OCEAN ===== */
+        .lyrics-section {
+            background: #0a0a12;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lyrics-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(30, 80, 120, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 50%, rgba(100, 20, 80, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .lyrics-container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lyrics-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: #87CEEB;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            opacity: 0;
+            min-height: 3rem;
+        }
+
+        .lyrics-body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            line-height: 2.2;
+            letter-spacing: 0.5px;
+        }
+
+        .lyrics-line {
+            display: block;
+            min-height: 2.2em;
+            white-space: pre-wrap;
+        }
+
+        .lyrics-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: rgba(255,255,255,0.7);
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: blinkCursor 0.8s step-end infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -1510,6 +1577,13 @@
         </div>
     </div>
     
+    <section id="lyrics" class="lyrics-section">
+        <div class="lyrics-container">
+            <div class="lyrics-header" id="lyricsHeader"></div>
+            <div class="lyrics-body" id="lyricsBody"></div>
+        </div>
+    </section>
+
     <div class="elegant-divider">❋ ✦ ❋</div>
 
     <section id="photo-album" class="photo-album">
@@ -1866,6 +1940,91 @@
     })();
     </script>
     
+    <!-- Script letra animada Danny Ocean - Corazón -->
+    <script>
+    (function() {
+        const CHAR_DELAY = 80; // ms entre letras
+
+        const lyricsLines = [
+            { text: "No había ninguna intención, solo una tensión entre nosotros ⚡", color: "#FFD700" },
+            { text: "Era tanta la magia, baby, que se veía hasta en las fotos 📸",  color: "#00BFFF" },
+            { text: "La idea era arreglarnos, no terminar más rotos 💔",              color: "#00CED1" },
+            { text: "Hubo un fallo en la dirección, era tu cama",                    color: "#FF69B4" },
+            { text: "No tu corazón, bebé ❤️",                                        color: "#32CD32" },
+            { text: "Hicimos el amor una y otra vez ❤️",                             color: "#FFD700" },
+            { text: "No sé ni cómo explicarlo, baby, ya no sé si fuimos agua o sed 💧", color: "#00BFFF" },
+        ];
+
+        // Spread each line's characters across a total ~22s window (after header)
+        // Total chars ~ sum of all line lengths; target ~22s = 22000ms / 80ms = ~275 chars max
+        // Actual total chars will vary — we just use constant 80ms delay
+
+        async function sleep(ms) {
+            return new Promise(r => setTimeout(r, ms));
+        }
+
+        // Typewriter for a text node, char by char
+        async function typeText(spanEl, text, cursorEl) {
+            // Move cursor to this span
+            spanEl.appendChild(cursorEl);
+            for (const char of [...text]) {
+                spanEl.insertBefore(document.createTextNode(char), cursorEl);
+                await sleep(CHAR_DELAY);
+            }
+        }
+
+        async function runAnimation() {
+            const headerEl = document.getElementById('lyricsHeader');
+            const bodyEl   = document.getElementById('lyricsBody');
+
+            const cursor = document.createElement('span');
+            cursor.className = 'lyrics-cursor';
+
+            // --- "Dice 🎶" header ---
+            headerEl.style.opacity = '1';
+            headerEl.innerHTML = '';
+            const headerSpan = document.createElement('span');
+            headerEl.appendChild(headerSpan);
+            headerEl.appendChild(cursor);
+            await typeText(headerSpan, 'Dice 🎶', cursor);
+            await sleep(500);
+
+            // --- Lines ---
+            for (const line of lyricsLines) {
+                const lineEl = document.createElement('span');
+                lineEl.className = 'lyrics-line';
+                lineEl.style.color = line.color;
+                bodyEl.appendChild(lineEl);
+                lineEl.appendChild(cursor); // cursor at end of new line
+                await typeText(lineEl, line.text, cursor);
+                await sleep(300);
+            }
+
+            // Remove cursor after finishing
+            cursor.style.animation = 'none';
+            cursor.style.opacity = '0';
+        }
+
+        // Trigger when section enters viewport
+        const section = document.getElementById('lyrics');
+        let started = false;
+
+        const lyricObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !started) {
+                    started = true;
+                    lyricObserver.disconnect();
+                    runAnimation();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lyricObserver.observe(section);
+        });
+    })();
+    </script>
+
     <!-- Script de Cloudinary (archivo externo) -->
     <script src="upload-cloudinary.js"></script>
 </body>
